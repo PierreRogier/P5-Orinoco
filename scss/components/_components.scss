@@ -1,0 +1,43 @@
+.btn {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.more-btn {
+    background-color: $light-color;
+    color: $dark-color;
+    transition: $transition;
+    margin: 1rem 0;
+
+    &:hover {
+        background-color: $dark-color;
+        color: $light-color;
+    }
+}
+
+.add-btn {
+    background-color: $dark-color;
+    color: $light-color;
+    transition: $transition;
+    margin: 1rem 0;
+    animation: pulse 1s infinite ease-in-out;
+
+    &:hover {
+        background-color: $light-color;
+        color: $dark-color;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

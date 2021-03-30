@@ -1,0 +1,13 @@
+.main-footer {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $light-color;
+
+    p {
+        text-align: center;
+        color: $dark-color;
+        font-weight: bold;
+    }
+}

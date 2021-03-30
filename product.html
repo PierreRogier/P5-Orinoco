@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <title>Accueil - Orinoco</title>
+        <title>Produit - Orinoco</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="https://kit.fontawesome.com/fc5a40dddf.js" crossorigin="anonymous"></script>
         <link href="css/style.css" rel="stylesheet" />
         <link rel="icon" href="assets/images/favicon.ico" />
-
     </head>
     <body>
         <!-- Navbar -->
@@ -32,13 +31,25 @@
 
         <!-- Main -->
         <main>
-            <section class="hero-section">
-                <h1>Orinoco</h1>
-                <p>Pour les petits et les grands</p>
-            </section>
-            <section class="products-section">
-                <h2>Nos Produits</h2>
-                <div class="products-container"></div>
+            <section class="product-section">
+                <article class="product-section_article">
+                    <div>
+                        <img class="product-section_article_img" src="" alt="" />
+                    </div>
+                    <div class="product-section_article_content">
+                        <h2 class="product-section_article_title"></h2>
+                        <h3 class="product-section_article_price"></h3>
+                        <p class="product-section_article_desc"></p>
+                        <form>
+                            <label for="colors">Couleurs :</label>
+                            <select name="colors" id="colors"></select>
+                        </form>
+                        <div class="product-btn-container">
+                            <a href="cart.html" class="btn add-btn">Ajouter au panier</a>
+                            <a class="btn more-btn" href="index.html">Nos Produits</a>
+                        </div>
+                    </div>
+                </article>
             </section>
         </main>
 
@@ -49,6 +60,6 @@
 
         <!-- Scripts -->
         <script src="./javascript/layout.js"></script>
-        <script type="module" src="./javascript/home.js"></script>
+        <script type="module" src="./javascript/product.js"></script>
     </body>
 </html>

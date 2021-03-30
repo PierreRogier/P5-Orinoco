@@ -1,0 +1,23 @@
+{
+    "name": "orinoco",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "sass": "sass scss/main.scss css/style.css --watch --style compressed"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/PierreRogier/P5-Orinoco.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/PierreRogier/P5-Orinoco/issues"
+    },
+    "homepage": "https://github.com/PierreRogier/P5-Orinoco#readme",
+    "dependencies": {
+        "node-sass": "^5.0.0"
+    }
+}
