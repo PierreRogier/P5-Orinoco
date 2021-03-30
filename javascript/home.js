@@ -1,6 +1,6 @@
-import { url } from "./utils.js";
+import { url, getElement } from "./utils.js";
 
-const productsDOM = document.querySelector(".products-container");
+const productsDOM = getElement(".products-container");
 
 // DOMContentLoaded - the whole document (HTML) has been loaded.
 window.addEventListener("DOMContentLoaded", async () => {

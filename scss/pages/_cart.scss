@@ -1,0 +1,137 @@
+.cart-main {
+    min-height: calc(100vh - 130px);
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.cart-section {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background-color: white;
+    padding: 4rem 0;
+}
+
+.cart-section-products {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+}
+
+.cart-product {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 10px 0;
+    img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        background-position: center;
+    }
+    h3 {
+        font-weight: bold;
+    }
+    p {
+        font-weight: 500;
+    }
+}
+
+.btn-remove {
+    width: 100%;
+}
+
+.cart-section-products_total {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    p {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    span {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+}
+
+.cart-section-order {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.cart-input{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 0 150px;
+    label{
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    input{
+        height: 2rem;
+        line-height: 2rem;
+    }
+}
+
+.btn-clearCart{
+    width: fit-content;
+    align-self: center;
+}
+
+button:disabled{
+    cursor: not-allowed;
+}
+
+@media screen and (max-width: 900px){
+    .cart-section{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cart-section-products{
+        width: 100%;
+    }
+
+    .cart-product{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .product-name{
+        display: none;
+    }
+
+    .product-price{
+        margin: 0 1rem;
+    }
+
+    .cart-section-order{
+        width: 100%;
+        padding: 0 3rem;
+    }
+
+    .cart-input{
+        padding: 0;
+    }
+    
+}

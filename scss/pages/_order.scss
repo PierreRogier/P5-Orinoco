@@ -1,0 +1,17 @@
+.order-section{
+    min-height: 100vh;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1, h2{
+        text-align: center;
+        font-size: 3rem;
+        font-weight: bold;
+        span{
+            color: $light-color;
+        }
+    }
+}

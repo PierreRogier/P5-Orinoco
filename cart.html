@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <title>Accueil - Orinoco</title>
+        <title>Panier - Orinoco</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="https://kit.fontawesome.com/fc5a40dddf.js" crossorigin="anonymous"></script>
         <link href="css/style.css" rel="stylesheet" />
         <link rel="icon" href="assets/images/favicon.ico" />
-
     </head>
     <body>
         <!-- Navbar -->
@@ -31,8 +30,44 @@
         </nav>
 
         <!-- Main -->
-        <main>
-            <h1>Cart</h1>
+        <main class="cart-main">
+            <section class="cart-section">
+                <div class="cart-section-products">
+                    <h1>Vos produits :</h1>
+                    <h3 class="empty-cart">Votre panier est vide</h3>
+                    <div class="cart-section-products_container"></div>
+                    <div class="cart-section-products_total">
+                        <p>Total :</p>
+                        <span class="cart-section-products_price"></span>
+                    </div>
+                    <button class="btn more-btn btn-clearCart">Vider le panier</button>
+                </div>
+                <div class="cart-section-order">
+                    <form class="cart-form" method="POST">
+                        <div class="cart-input">
+                            <label for="firstName">Prenom :</label>
+                            <input type="text" id="firstName" name="firstname" required />
+                        </div>
+                        <div class="cart-input">
+                            <label for="lastName">Nom :</label>
+                            <input type="text" id="lastName" name="lastname" required />
+                        </div>
+                        <div class="cart-input">
+                            <label for="address">Adresse :</label>
+                            <input type="text" id="address" name="adress" required />
+                        </div>
+                        <div class="cart-input">
+                            <label for="city">Ville :</label>
+                            <input type="text" id="city" name="city" required />
+                        </div>
+                        <div class="cart-input">
+                            <label for="email">Email :</label>
+                            <input type="email" id="email" name="email" required />
+                        </div>
+                        <button type="submit" class="btn add-btn btn-order">Commander</button>
+                    </form>
+                </div>
+            </section>
         </main>
 
         <!-- Footer -->

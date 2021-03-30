@@ -1,14 +1,13 @@
-import {url, formatPrice} from "./utils.js"
+import { url, formatPrice, getElement, getStore } from "./utils.js";
 
 const id = window.location.search.substring(4);
 
-const article = document.querySelector(".product-section_article");
-const imgDOM = document.querySelector(".product-section_article_img");
-const titleDOM = document.querySelector(".product-section_article_title");
-const priceDOM = document.querySelector(".product-section_article_price");
-const descDOM = document.querySelector(".product-section_article_desc");
-const addBtn = document.querySelector(".btn-add");
-const colorsDOM = document.querySelector("#colors");
+const imgDOM = getElement(".product-section_article_img");
+const titleDOM = getElement(".product-section_article_title");
+const priceDOM = getElement(".product-section_article_price");
+const descDOM = getElement(".product-section_article_desc");
+const addBtn = getElement(".add-btn");
+const colorsDOM = getElement("#colors");
 
 window.addEventListener("DOMContentLoaded", async () => {
     try {
@@ -16,11 +15,18 @@ window.addEventListener("DOMContentLoaded", async () => {
         const data = await response.json();
 
         const { name, imageUrl, description, price, colors } = data;
+
         imgDOM.src = imageUrl;
         imgDOM.alt = name;
         titleDOM.textContent = name;
         priceDOM.textContent = formatPrice(price);
         descDOM.textContent = description;
+
+        addBtn.addEventListener("click", () => {
+            const store = getStore("cart");
+            const newStore = [...store, data];
+            localStorage.setItem("cart", JSON.stringify(newStore));
+        });
 
         colorsDOM.innerHTML = colors
             .map((color) => {
