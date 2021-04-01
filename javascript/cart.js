@@ -6,6 +6,7 @@ const clearCartBtn = getElement(".btn-clearCart");
 const orderBtn = getElement(".btn-order");
 const cartForm = getElement(".cart-form");
 const emptyCart = getElement(".empty-cart");
+const productsNumberDOM = getElement(".products-number");
 
 window.addEventListener("DOMContentLoaded", () => {
     getProducts();
@@ -15,6 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
 clearCartBtn.addEventListener("click", () => {
     localStorage.removeItem("cart");
     getProducts();
+    productsNumberDOM.textContent = 0;
 });
 
 cartForm.addEventListener("submit", async (e) => {
@@ -82,7 +84,8 @@ function getProducts() {
                 <h3 class="product-name">${name}</h3>
                 <p class="product-price">${formatPrice(price)}</p>        
                 <button class="btn more-btn btn-remove" data-id=${_id}>Supprimer</button>
-            </article>
+                </article>
+                <hr/>
             `;
         })
         .join("");
@@ -96,6 +99,7 @@ function removeFromCart(e) {
         store.splice(index, 1);
         localStorage.setItem("cart", JSON.stringify(store));
         getProducts();
+        productsNumberDOM.textContent = store.length;
     }
 }
 

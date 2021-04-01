@@ -45,18 +45,36 @@
 }
 
 .navbar-links {
+    li{
+        display: block;
+        width: max-content;
+    }
     a {
         color: $dark-color;
         font-size: 1.5rem;
         text-transform: capitalize;
         display: block;
         padding: 0.5rem 1rem;
-        transition: $transition;
-        &:hover {
-            padding-left: 1.5rem;
-            transform: scale(1.05);
-        }
     }
+}
+
+.nav-cart-icon {
+    position: relative;
+}
+
+.products-number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: $dark-color;
+    width: 1.2rem;
+    height: 1.2rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: $light-color;
+    font-weight: bold;
+    font-size: 0.8rem;
 }
 
 @media screen and (min-width: 800px) {
