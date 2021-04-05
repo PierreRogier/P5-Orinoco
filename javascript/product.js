@@ -1,8 +1,8 @@
-import { url, formatPrice, getElement, getStore } from "./utils.js";
+import { url, formatPrice, getElement, getStore, fetchData } from "./utils.js";
 
 const id = window.location.search.substring(4);
-console.log(window.location.search);
 
+const articleDOM = getElement(".product-section_article");
 const imgDOM = getElement(".product-section_article_img");
 const titleDOM = getElement(".product-section_article_title");
 const priceDOM = getElement(".product-section_article_price");
@@ -12,8 +12,7 @@ const colorsDOM = getElement("#colors");
 
 window.addEventListener("DOMContentLoaded", async () => {
     try {
-        const response = await fetch(`${url}/${id}`);
-        const data = await response.json();
+        const data = await fetchData(`${url}/${id}`);
 
         const { name, imageUrl, description, price, colors } = data;
 
@@ -36,5 +35,6 @@ window.addEventListener("DOMContentLoaded", async () => {
             .join("");
     } catch (error) {
         console.log(error);
+        articleDOM.innerHTML = `<h1>Produit indisponible</h1>`
     }
 });

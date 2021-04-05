@@ -1,21 +1,14 @@
-import { url, getElement } from "./utils.js";
+import { url, getElement, fetchData } from "./utils.js";
 
 const productsDOM = getElement(".products-container");
 
-// DOMContentLoaded - the whole document (HTML) has been loaded.
 window.addEventListener("DOMContentLoaded", async () => {
-    // Get the Data from the server
     try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        // Display the Data
-        if (!data) {
-            productsDOM.innerHTML = `<h2>Produits indisponibles</h2>`;
-        }
+        const data = await fetchData(url);
         productsDOM.innerHTML = displayProductsHome(data);
     } catch (error) {
         console.log(error);
+        productsDOM.innerHTML = `<h2>Produits indisponibles</h2>`;
     }
 });
 
@@ -23,7 +16,6 @@ function displayProductsHome(arrayOfProducts) {
     return arrayOfProducts
         .map((product) => {
             const { name, imageUrl, _id: id } = product;
-
             return `
     <article class="home-product">
         <h3>${name}</h3>
