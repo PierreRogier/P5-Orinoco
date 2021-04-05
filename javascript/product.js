@@ -1,6 +1,7 @@
 import { url, formatPrice, getElement, getStore } from "./utils.js";
 
 const id = window.location.search.substring(4);
+console.log(window.location.search);
 
 const imgDOM = getElement(".product-section_article_img");
 const titleDOM = getElement(".product-section_article_title");

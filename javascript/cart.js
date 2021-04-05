@@ -24,28 +24,29 @@ cartForm.addEventListener("submit", async (e) => {
     const store = getStore("cart");
     if (store.length < 1) {
         return;
-    } else {
-        orderBtn.disabled = true;
+    }
+    orderBtn.disabled = true;
 
-        const firstName = getElement("#firstName").value;
-        const lastName = getElement("#lastName").value;
-        const address = getElement("#address").value;
-        const city = getElement("#city").value;
-        const email = getElement("#email").value;
+    const firstName = getElement("#firstName").value;
+    const lastName = getElement("#lastName").value;
+    const address = getElement("#address").value;
+    const city = getElement("#city").value;
+    const email = getElement("#email").value;
 
-        const contact = {
-            firstName,
-            lastName,
-            address,
-            city,
-            email,
-        };
+    const contact = {
+        firstName,
+        lastName,
+        address,
+        city,
+        email,
+    };
 
-        const products = [];
-        store.forEach((product) => products.push(product._id));
+    const products = [];
+    store.forEach((product) => products.push(product._id));
 
-        const data = { contact, products };
+    const data = { contact, products };
 
+    try {
         const response = await fetch(`${url}/order`, {
             method: "POST",
             headers: {
@@ -62,34 +63,40 @@ cartForm.addEventListener("submit", async (e) => {
         localStorage.setItem("order", JSON.stringify(orderData));
         localStorage.removeItem("cart");
         location.replace("order.html");
+    } catch (error) {
+        console.log(error);
     }
 });
 
 function getProducts() {
     const store = getStore("cart");
-    if (store.length === 0 || store === null || store === undefined) {
+    if (store.length === 0) {
         orderBtn.disabled = true;
         emptyCart.textContent = "Votre panier est vide";
     } else if (store.length > 0) {
         emptyCart.textContent = "";
     }
-    products.innerHTML = store
+    products.innerHTML = displayProductsCart(store);
+    totalPrice.textContent = formatPrice(getTotalPrice());
+}
+
+function displayProductsCart(arrayOfProducts) {
+    return arrayOfProducts
         .map((product) => {
             const { name, imageUrl, _id, price } = product;
             return `
-            <article class="cart-product">
-                <div>
-                    <img src=${imageUrl} alt=${name}>
-                </div>
-                <h3 class="product-name">${name}</h3>
-                <p class="product-price">${formatPrice(price)}</p>        
-                <button class="btn more-btn btn-remove" data-id=${_id}>Supprimer</button>
-                </article>
-                <hr/>
-            `;
+        <article class="cart-product">
+            <div>
+                <img src=${imageUrl} alt=${name}>
+            </div>
+            <h3 class="product-name">${name}</h3>
+            <p class="product-price">${formatPrice(price)}</p>        
+            <button class="btn more-btn btn-remove" data-id=${_id}>Supprimer</button>
+            </article>
+            <hr/>
+        `;
         })
         .join("");
-    totalPrice.textContent = formatPrice(getTotalPrice());
 }
 
 function removeFromCart(e) {
@@ -105,8 +112,8 @@ function removeFromCart(e) {
 
 function getTotalPrice() {
     const store = getStore("cart");
-    const totalPrice = store.reduce((total, value) => {
-        return (total += value.price);
+    const totalPrice = store.reduce((total, item) => {
+        return (total += item.price);
     }, 0);
     return totalPrice;
 }
