@@ -1,15 +1,11 @@
-import { fetchData, url, formatPrice, getStore } from "../javascript/utils.js";
+import { formatPrice, getStore } from "../javascript/utils.js";
 
 const sum = (a, b) => {
     return a + b;
 };
 
 test("sum 1 + 1", () => {
-    expect(typeof sum(1, 1)).toBe("number");
-});
-
-test("get data", async () => {
-    expect(fetchData(url)).toBeDefined();
+    expect(sum(1, 1)).toBe(2);
 });
 
 test("price formated", () => {
