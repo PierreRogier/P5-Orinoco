@@ -1,4 +1,4 @@
-import { url, getElement, getStore, formatPrice } from "./utils.js";
+import { url, getElement, getStore, formatPrice, checkInputIsValid, displayInputMessage } from "./utils.js";
 
 const products = getElement(".cart-section-products_container");
 const totalPrice = getElement(".cart-section-products_price");
@@ -7,6 +7,11 @@ const orderBtn = getElement(".btn-order");
 const cartForm = getElement(".cart-form");
 const emptyCart = getElement(".empty-cart");
 const productsNumberDOM = getElement(".products-number");
+const firstNameDOM = getElement("#firstName");
+const lastNameDOM = getElement("#lastName");
+const addressDOM = getElement("#address");
+const cityDOM = getElement("#city");
+const emailDOM = getElement("#email");
 
 window.addEventListener("DOMContentLoaded", () => {
     getProducts();
@@ -21,17 +26,18 @@ clearCartBtn.addEventListener("click", () => {
 
 cartForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const formValidator = inputsValidation.some((input) => input.isValid === false);
     const store = getStore("cart");
-    if (store.length < 1) {
+    if (store.length < 1 || formValidator) {
         return;
     }
     orderBtn.disabled = true;
 
-    const firstName = getElement("#firstName").value;
-    const lastName = getElement("#lastName").value;
-    const address = getElement("#address").value;
-    const city = getElement("#city").value;
-    const email = getElement("#email").value;
+    const firstName = firstNameDOM.value;
+    const lastName = lastNameDOM.value;
+    const address = addressDOM.value;
+    const city = cityDOM.value;
+    const email = emailDOM.value;
 
     const contact = {
         firstName,
@@ -110,10 +116,62 @@ function removeFromCart(e) {
     }
 }
 
-function getTotalPrice() {
+export function getTotalPrice() {
     const store = getStore("cart");
     const totalPrice = store.reduce((total, item) => {
         return (total += item.price);
     }, 0);
     return totalPrice;
 }
+
+const inputsValidation = [
+    {
+        name: "firstName",
+        element: getElement(".firstname-input-message"),
+        validMessage: "Prenom valide",
+        errorMessage: "Prenom non valide",
+        regex: /^[a-zA-Z-_ ]+$/,
+        isValid: false,
+    },
+    {
+        name: "lastName",
+        element: getElement(".lastname-input-message"),
+        validMessage: "Nom valide",
+        errorMessage: "Nom non valide",
+        regex: /^[a-zA-Z-_ ]+$/,
+        isValid: false,
+    },
+    {
+        name: "address",
+        element: getElement(".address-input-message"),
+        validMessage: "Adresse valide",
+        errorMessage: "Adresse non valide",
+        regex: /^[a-zA-Z0-9-,_ ]+$/,
+        isValid: false,
+    },
+    {
+        name: "city",
+        element: getElement(".city-input-message"),
+        validMessage: "Ville valide",
+        errorMessage: "Ville non valide",
+        regex: /^[a-zA-Z-_ ]+$/,
+        isValid: false,
+    },
+    {
+        name: "email",
+        element: getElement(".email-input-message"),
+        validMessage: "Email valide",
+        errorMessage: "Email non valide",
+        regex: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+        isValid: false,
+    },
+];
+
+window.addEventListener("input", function (e) {
+    inputsValidation.forEach((input) => {
+        if (e.target.name === input.name) {
+            let result = checkInputIsValid(e.target.value, input.regex, input);
+            displayInputMessage(result, input.element, input.validMessage, input.errorMessage);
+        }
+    });
+});

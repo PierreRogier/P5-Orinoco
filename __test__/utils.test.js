@@ -1,4 +1,4 @@
-import { formatPrice, getStore } from "../javascript/utils.js";
+import { formatPrice, getStore } from "../javascript/utils.js"
 
 const sum = (a, b) => {
     return a + b;

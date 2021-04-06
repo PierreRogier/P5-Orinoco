@@ -30,3 +30,22 @@ export const fetchData = async (url) => {
         console.log(error);
     }
 };
+
+export const checkInputIsValid = (inputStr, regex, input) => {
+    if (inputStr.match(regex)) {
+        input.isValid = true;
+        return true;
+    }
+    input.isValid = false;
+    return false;
+};
+
+export const displayInputMessage = (bool, element, validMessage, errorMessage) => {
+    if (bool) {
+        element.textContent = validMessage;
+        element.style.color = "green";
+    } else {
+        element.textContent = errorMessage;
+        element.style.color = "red";
+    }
+};
