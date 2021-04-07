@@ -31,12 +31,10 @@ export const fetchData = async (url) => {
     }
 };
 
-export const checkInputIsValid = (inputStr, regex, input) => {
+export const checkInputIsValid = (inputStr, regex) => {
     if (inputStr.match(regex)) {
-        input.isValid = true;
         return true;
     }
-    input.isValid = false;
     return false;
 };
 

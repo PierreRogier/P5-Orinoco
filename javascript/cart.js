@@ -170,7 +170,8 @@ const inputsValidation = [
 window.addEventListener("input", function (e) {
     inputsValidation.forEach((input) => {
         if (e.target.name === input.name) {
-            let result = checkInputIsValid(e.target.value, input.regex, input);
+            let result = checkInputIsValid(e.target.value, input.regex);
+            input.isValid = result;
             displayInputMessage(result, input.element, input.validMessage, input.errorMessage);
         }
     });
