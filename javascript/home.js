@@ -7,8 +7,8 @@ window.addEventListener("DOMContentLoaded", async () => {
         const data = await fetchData(url);
         productsDOM.innerHTML = displayProductsHome(data);
     } catch (error) {
-        console.log(error);
         productsDOM.innerHTML = `<h2>Produits indisponibles</h2>`;
+        throw new Error({error})
     }
 });
 

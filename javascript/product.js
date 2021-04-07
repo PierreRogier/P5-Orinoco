@@ -34,7 +34,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             })
             .join("");
     } catch (error) {
-        console.log(error);
-        articleDOM.innerHTML = `<h1>Produit indisponible</h1>`
+        articleDOM.innerHTML = `<h1>Produit indisponible</h1>`;
+        throw new Error({ error });
     }
 });

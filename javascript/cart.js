@@ -70,7 +70,7 @@ cartForm.addEventListener("submit", async (e) => {
         localStorage.removeItem("cart");
         location.replace("order.html");
     } catch (error) {
-        console.log(error);
+        throw new Error({error})
     }
 });
 
