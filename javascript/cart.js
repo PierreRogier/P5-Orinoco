@@ -26,25 +26,19 @@ clearCartBtn.addEventListener("click", () => {
 
 cartForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const formValidator = inputsValidation.some((input) => input.isValid === false);
     const store = getStore("cart");
+    const formValidator = inputsValidation.some((input) => input.isValid === false);
     if (store.length < 1 || formValidator) {
         return;
     }
     orderBtn.disabled = true;
 
-    const firstName = firstNameDOM.value;
-    const lastName = lastNameDOM.value;
-    const address = addressDOM.value;
-    const city = cityDOM.value;
-    const email = emailDOM.value;
-
     const contact = {
-        firstName,
-        lastName,
-        address,
-        city,
-        email,
+        firstName: firstNameDOM.value,
+        lastName: lastNameDOM.value,
+        address: addressDOM.value,
+        city: cityDOM.value,
+        email: emailDOM.value,
     };
 
     const products = [];
@@ -70,7 +64,7 @@ cartForm.addEventListener("submit", async (e) => {
         localStorage.removeItem("cart");
         location.replace("order.html");
     } catch (error) {
-        throw new Error({error})
+        throw new Error({ error });
     }
 });
 
