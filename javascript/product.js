@@ -16,6 +16,8 @@ window.addEventListener("DOMContentLoaded", async () => {
 
         const { name, imageUrl, description, price, colors } = data;
 
+        document.title = `${name} - Orinoco`
+
         imgDOM.src = imageUrl;
         imgDOM.alt = name;
         titleDOM.textContent = name;

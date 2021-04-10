@@ -42,7 +42,7 @@ export const displayInputMessage = (bool, element, validMessage, errorMessage) =
     if (bool) {
         element.textContent = validMessage;
         element.style.color = "green";
-    } else {
+    } else if (!bool) {
         element.textContent = errorMessage;
         element.style.color = "red";
     }
