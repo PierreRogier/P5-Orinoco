@@ -120,7 +120,7 @@ export function getTotalPrice() {
 
 const inputsValidation = [
     {
-        name: "firstName",
+        inputDOM: firstNameDOM,
         element: getElement(".firstname-input-message"),
         validMessage: "Prenom valide",
         errorMessage: "Prenom non valide",
@@ -128,7 +128,7 @@ const inputsValidation = [
         isValid: false,
     },
     {
-        name: "lastName",
+        inputDOM: lastNameDOM,
         element: getElement(".lastname-input-message"),
         validMessage: "Nom valide",
         errorMessage: "Nom non valide",
@@ -136,7 +136,7 @@ const inputsValidation = [
         isValid: false,
     },
     {
-        name: "address",
+        inputDOM: addressDOM,
         element: getElement(".address-input-message"),
         validMessage: "Adresse valide",
         errorMessage: "Adresse non valide",
@@ -144,7 +144,7 @@ const inputsValidation = [
         isValid: false,
     },
     {
-        name: "city",
+        inputDOM: cityDOM,
         element: getElement(".city-input-message"),
         validMessage: "Ville valide",
         errorMessage: "Ville non valide",
@@ -152,7 +152,7 @@ const inputsValidation = [
         isValid: false,
     },
     {
-        name: "email",
+        inputDOM: emailDOM,
         element: getElement(".email-input-message"),
         validMessage: "Email valide",
         errorMessage: "Email non valide",
@@ -161,12 +161,11 @@ const inputsValidation = [
     },
 ];
 
-window.addEventListener("input", function (e) {
-    inputsValidation.forEach((input) => {
-        if (e.target.name === input.name) {
-            let result = checkInputIsValid(e.target.value, input.regex);
-            input.isValid = result;
-            displayInputMessage(result, input.element, input.validMessage, input.errorMessage);
-        }
+inputsValidation.forEach((input) => {
+    const { inputDOM } = input;
+    inputDOM.addEventListener("blur", (e) => {
+        let result = checkInputIsValid(e.target.value, input.regex);
+        input.isValid = result;
+        displayInputMessage(result, input.element, input.validMessage, input.errorMessage);
     });
 });

@@ -42,6 +42,9 @@ export const displayInputMessage = (bool, element, validMessage, errorMessage) =
     if (bool) {
         element.textContent = validMessage;
         element.style.color = "green";
+        const timer = setTimeout(() => {
+            element.textContent = "";
+        }, 2000);
     } else if (!bool) {
         element.textContent = errorMessage;
         element.style.color = "red";
